@@ -11,11 +11,12 @@
   "scripts": {
     "start": "node server.js",
     "verify:design": "node scripts/verify-design.js",
-    "lock:design": "node scripts/verify-design.js --write",
-    "test:fidelity": "playwright test",
-    "test": "npm run verify:design && npm run test:fidelity"
+    "test:visual": "playwright test tests/visual.spec.js",
+    "test:import": "playwright test tests/import.spec.js",
+    "test": "npm run verify:design && npm run test:visual",
+    "design:approve": "node scripts/verify-design.js --write && playwright test tests/visual.spec.js --update-snapshots"
   },
   "devDependencies": {
-    "@playwright/test": "^1.48.0"
+    "@playwright/test": "1.63.0"
   }
 }

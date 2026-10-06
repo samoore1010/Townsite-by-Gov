@@ -17,24 +17,27 @@ npm start          # http://localhost:3000
 
 | Path | What it is |
 |---|---|
-| `design/` | The sealed Claude Design export: page markup and app logic (`index.html`), Claude Design runtime, React 18, fonts. **Do not edit.** |
-| `design.lock.json` | SHA-256 checksums of every file in `design/` |
-| `reference/artifact-bundle.html` | The original published artifact, used as the visual reference |
+| `design/` | The UI: Claude Design export (markup and app logic in `index.html`, Claude Design runtime, React 18, fonts). Changes follow `CLAUDE.md`. |
+| `design.lock.json` | Checksums of the owner-approved `design/` |
+| `tests/baselines/` | Owner-approved screenshots of every screen |
+| `reference/artifact-bundle.html` | The latest Claude Design bundle, used to verify imports |
 | `server.js` | Dependency-free static server (Railway runs this) |
 | `scripts/verify-design.js` | Checksum verification and re-sealing |
-| `tests/fidelity.spec.js` | Pixel-identical comparison of served app vs. reference |
+| `tests/visual.spec.js` | Served app vs. approved baselines |
+| `tests/import.spec.js` | Served app vs. Claude Design bundle (imports) |
+| `scripts/unpack-bundle.js` | Unpacks a Claude Design bundle into `design/` |
 | `docs/backend-seam.md` | How to connect a backend without touching the design |
 | `CLAUDE.md` | Rules for coding agents |
 
-## Fidelity checks
+## Visual checks
 
 ```bash
-npm run verify:design   # design files unchanged
-npm run test:fidelity   # served app renders pixel-identical to the reference
-npm test                # both
+npm test                 # checksums + approved baselines (run before every commit)
+npm run test:import      # Claude Design imports: app vs. bundle, pixel-identical
+npm run design:approve   # after the owner approves a visual change
 ```
 
-The first time, install the test browser with `npx playwright install chromium`.
+The first time, install the test browser with `npx playwright install chromium`. Design change rules are in `CLAUDE.md`.
 
 ## Deploy on Railway
 
@@ -47,4 +50,4 @@ No environment variables are required.
 
 ## Updating the design
 
-Make changes in Claude Design, then follow the steps in `CLAUDE.md` under "Changing the design."
+See `CLAUDE.md` (imports from Claude Design and direct changes).

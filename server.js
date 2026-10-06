@@ -1,5 +1,5 @@
 // Townsite static server.
-// Serves the sealed Claude Design export in ./design exactly as exported.
+// Serves the app in ./design exactly as committed.
 // No build step, no transformation of any design file.
 
 const http = require('http');
