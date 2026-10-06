@@ -1,0 +1,21 @@
+{
+  "name": "townsite",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Townsite: a single system of record for real property development approvals (demo).",
+  "license": "UNLICENSED",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "verify:design": "node scripts/verify-design.js",
+    "lock:design": "node scripts/verify-design.js --write",
+    "test:fidelity": "playwright test",
+    "test": "npm run verify:design && npm run test:fidelity"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
+  }
+}
