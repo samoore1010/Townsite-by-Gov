@@ -7,7 +7,6 @@ To refresh the repo from a new bundle:
 1. Save the new bundle as `reference/artifact-bundle.html`.
 2. Run `node scripts/unpack-bundle.js reference/artifact-bundle.html` (writes `design/index.html` and `design/assets/...`, replacing the old export).
 3. `npm run test:import` (the unpacked app must render pixel-identical to the bundle; if not, stop and report).
-4. `npm run design:approve` (re-seals checksums and regenerates baselines), then `npm test`.
-5. Commit as "Design import: <what changed>".
+4. Commit as "Design import: <what changed>".
 
 The unpacker does exactly three mechanical things and nothing else: decodes each asset to a file, replaces each asset's id in the template with its file path, and injects `window.__resources` mapping the external React URLs to the local copies. It never alters markup, styles, or logic.

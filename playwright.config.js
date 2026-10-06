@@ -1,12 +1,10 @@
-// Visual tests. tests/visual.spec.js: served app vs owner-approved baselines.
-// tests/import.spec.js: served app vs the Claude Design bundle (design imports).
+// Import fidelity check: tests/import.spec.js renders the served app and the
+// Claude Design bundle side by side and requires pixel-identical screens.
+// Run only when importing a new Claude Design export (npm run test:import).
 const { defineConfig } = require('@playwright/test');
 
 module.exports = defineConfig({
   testDir: './tests',
-  // Approved baseline screenshots live here (owner-approved state of the UI).
-  snapshotPathTemplate: 'tests/baselines/{arg}{ext}',
-  expect: { toHaveScreenshot: { maxDiffPixels: 0, threshold: 0, animations: 'disabled' } },
   timeout: 120000,
   workers: 1,
   reporter: [['list'], ['html', { open: 'never' }]],

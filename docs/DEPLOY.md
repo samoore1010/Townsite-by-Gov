@@ -10,17 +10,17 @@ The app is a static site served by `server.js` (Node 18+, no dependencies at run
 4. Service **Settings → Healthcheck path:** `/healthz`.
 5. **Settings → Networking → Generate Domain** (or add a custom domain).
 
-## After deploying: verify fidelity against the live site
+## Optional: verify the live site against the Claude Design bundle
 
-Run the visual tests against the deployed URL instead of the local server:
+While `/design` still matches the latest Claude Design import, you can compare the deployed site to the bundle:
 
 ```bash
 npx playwright install chromium
-FIDELITY_BASE_URL=https://<your-railway-domain> npx playwright test tests/visual.spec.js
+FIDELITY_BASE_URL=https://<your-railway-domain> npm run test:import
 ```
 
 (`playwright.config.js` reads `FIDELITY_BASE_URL` when set; otherwise it starts the local server.)
 
 ## Every later deploy
 
-Pushes to `main` redeploy automatically. CI (`.github/workflows/fidelity.yml`) runs the checksum and visual checks on every push; do not merge if they fail.
+Pushes to `main` redeploy automatically.

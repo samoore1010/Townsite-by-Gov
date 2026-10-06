@@ -18,23 +18,19 @@ npm start          # http://localhost:3000
 | Path | What it is |
 |---|---|
 | `design/` | The UI: Claude Design export (markup and app logic in `index.html`, Claude Design runtime, React 18, fonts). Changes follow `CLAUDE.md`. |
-| `design.lock.json` | Checksums of the owner-approved `design/` |
-| `tests/baselines/` | Owner-approved screenshots of every screen |
 | `reference/artifact-bundle.html` | The latest Claude Design bundle, used to verify imports |
 | `server.js` | Dependency-free static server (Railway runs this) |
-| `scripts/verify-design.js` | Checksum verification and re-sealing |
-| `tests/visual.spec.js` | Served app vs. approved baselines |
 | `tests/import.spec.js` | Served app vs. Claude Design bundle (imports) |
 | `scripts/unpack-bundle.js` | Unpacks a Claude Design bundle into `design/` |
 | `docs/backend-seam.md` | How to connect a backend without touching the design |
 | `CLAUDE.md` | Rules for coding agents |
 
-## Visual checks
+## Import fidelity check
+
+When importing a new Claude Design export:
 
 ```bash
-npm test                 # checksums + approved baselines (run before every commit)
-npm run test:import      # Claude Design imports: app vs. bundle, pixel-identical
-npm run design:approve   # after the owner approves a visual change
+npm run test:import      # app vs. Claude Design bundle, pixel-identical
 ```
 
 The first time, install the test browser with `npx playwright install chromium`. Design change rules are in `CLAUDE.md`.

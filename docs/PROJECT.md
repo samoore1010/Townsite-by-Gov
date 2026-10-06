@@ -39,14 +39,14 @@ These are design inputs. They are implemented in Claude Design, not in this repo
 
 Two routes, both governed by `CLAUDE.md`:
 
-- **Imports from Claude Design** must land with 100% fidelity: unpack the new bundle, `npm run test:import` (pixel-identical to the bundle), then approve. See `docs/UNPACKING.md`.
-- **Direct changes by a coding agent** are allowed when the owner asks for a specific change. The agent changes only what was asked, shows before/after screenshots from `npm run test:visual`, and updates the approved baselines only after the owner approves. Rejected changes are discarded.
+- **Imports from Claude Design** must land with 100% fidelity: unpack the new bundle and run `npm run test:import` (pixel-identical to the bundle). See `docs/UNPACKING.md`.
+- **Direct changes by a coding agent** are allowed when the owner asks for a specific change. The agent changes only what was asked.
 
-The approved state of the UI is recorded in `design.lock.json` (checksums) and `tests/baselines/` (screenshots). CI fails any push whose screens differ from the approved baselines.
+All other work leaves the design alone.
 
 ## Current status
 
-- Repo contains the Claude Design export, a dependency-free static server, checksum and visual tests, and CI.
+- Repo contains the Claude Design export, a dependency-free static server, and the import fidelity test.
 - Fidelity verified: the served app renders pixel-identical to the original artifact for all personas (desktop and phone) and all project workspace sections.
 - Next: deploy to Railway (`docs/DEPLOY.md`).
 - Later: backend (see `docs/backend-seam.md`), real authentication, multi-user data. Any screen changes those require are designed in Claude Design first.

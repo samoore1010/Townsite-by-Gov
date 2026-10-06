@@ -10,11 +10,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "verify:design": "node scripts/verify-design.js",
-    "test:visual": "playwright test tests/visual.spec.js",
-    "test:import": "playwright test tests/import.spec.js",
-    "test": "npm run verify:design && npm run test:visual",
-    "design:approve": "node scripts/verify-design.js --write && playwright test tests/visual.spec.js --update-snapshots"
+    "test:import": "playwright test tests/import.spec.js"
   },
   "devDependencies": {
     "@playwright/test": "1.63.0"

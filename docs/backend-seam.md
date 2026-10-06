@@ -16,6 +16,6 @@ In `design/index.html` the app's logic class reads and writes one object:
 
 1. Add API routes to the server (for example `GET /api/state` and `PUT /api/state`), backed by a database.
 2. Add a small script **outside** `/design` (for example `server/public/storage-bridge.js`) that the server injects before the app loads. It replaces `window.localStorage` reads and writes for the key `civicpath-cholla-v4` with calls to the API (load on start, save on change).
-3. Have `server.js` insert one `<script src="/storage-bridge.js">` tag into the HTML response at serve time. The file on disk in `/design` stays unchanged, so `verify:design` still passes, and the fidelity tests confirm the rendering is unchanged.
+3. Have `server.js` insert one `<script src="/storage-bridge.js">` tag into the HTML response at serve time. The file on disk in `/design` stays unchanged, so the design is untouched.
 
 Multi-user data, authentication, and per-persona permissions are larger changes. They should be designed first (in Claude Design for any screen changes), then implemented behind the same seam.
